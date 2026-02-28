@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Tic Tac Toe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        body {
+            background: linear-gradient(0deg, rgba(2, 0, 36, 0.76) 0%, rgba(116, 116, 181, 0.78) 35%, rgba(163, 233, 247, 0.88) 100%);
+        }
+
+        .container {
+            grid-template-columns: auto auto auto;
+            border-radius: 5px;
+            display: grid;
+            flex-direction: row;
+            align-items: flex-start;
+            border: 500px none #1db4fad4;
+            border-collapse: collapse;
+        }
+
+        .container_001 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #22282cb4;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            position: relative;
+        }
+
+        .box:hover {
+            background: linear-gradient(180deg, rgba(210, 123, 247, 0.35) 10%, rgba(252, 192, 71, 0.35) 50%);
+        }
+
+        .box h3 {
+            font-size: 24px;
+            color: #3545C5;
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+        }
+
+        .box {
+            border: 1px solid #fafafad4;
+            max-width: 250px;
+            width: 100%;
+            border-radius: 20%;
+            text-align: center;
+            display: inline-block;
+            min-height: 250px;
+            vertical-align: top;
+            margin: 15px;
+            padding: 10px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+            color: rgba(0, 11, 46, 0.793);
+            text-align: center;
+        }
+
+        #card001,
+        #card002,
+        #card003,
+        #card004,
+        #card005,
+        #card006,
+        #card007,
+        #card008,
+        #card009 {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+            color: rgba(0, 11, 46, 0.793);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+        This is The
+    </p>
+    <h1 style="text-align: center; font: 3.6em courier;">Tic Tac Toe Game</h1>
+    <div class="container-002" id="x-turn"
+        style="border:1px white dashed; font-size:38px; font-family:courier; text-align:center;">
+        X Turn to start
+    </div>
+
+    <!-- This container will hold the 9 squares -->
+    <div class="container">
+        <!-- script will create card_0 ... card_8 here -->
+    </div>
+
+    <div class="container_001">
+        <div id="button_1" class="button_1" value="XsTurn" onclick="dosomething_1()">
+            <button onclick="alert('Should We Get Started?')"> X's Turn Start</button>
+        </div>
+        <div id="button_2" class="button_2" value="OsTurn" onclick="dosomething_2()">
+            <button onclick="alert('Please Take Your Turn.')">O's turn</button>
+        </div>
+        <div class="button">
+            <form action="https://en.wikipedia.org/wiki/Tic-tac-toe" method="get" target="_blank">
+                <button type="submit">Link Info Page</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        NUM_SQUARES = 9;
+
+        window.onload = function () {
+            // Get the container where we will add the squares
+            const container = document.querySelector('.container');
+            // Get the message element to update it later
+            const message = document.getElementById("x-turn");
+
+            // 1. Create 9 <div> elements with class "box" and unique ids
+            for (let i = 0; i < NUM_SQUARES; i++) {
+                let id = "card_" + i;
+
+                cards = document.createElement("div");
+                cards.className = "box";
+                cards.id = id;
+
+                // 2. Add click event listener to each square
+                cards.addEventListener("click", function () {
+                    // Toggle between "X" and "O" on click
+                    this.textContent = this.textContent === "X" ? "O" : "X";
+
+                    // Alert the square number that was clicked
+                    alert("You clicked square number: " + i);
+
+                    // Update the message to show which square was clicked and what was placed
+                    message.innerText = "You clicked square " + i + " and an X was placed.";
+                });
+
+                container.appendChild(cards);
+            }
+            // 3. Add event listener to the X's Turn button
+            const cardClick = document.getElementById("button_1");
+
+            function writeX() {
+                // This function will be called when the X's Turn button is clicked
+                message.innerText = "You will Find O on the 6th Card/Square!";
+            }
+
+            // Check if the button exists before adding the event listener
+            if (cardClick) {
+                cardClick.addEventListener("click", function () {
+                    writeX();
+                    alert("X's Turn Start");
+                });
+            }
+        };
+    </script>
+</body>
+
+</html>
