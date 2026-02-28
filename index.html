@@ -122,9 +122,20 @@
     </div>
 
     <script>
-        <script>
     NUM_SQUARES = 9;
     let currentPlayer = "X"; // <--- ADDED: start with X
+
+    // <--- ADDED: randomly choose a player to start (this can be removed if you want X to always start)
+    if (Math.random() < 0.5) {
+        currentPlayer = "X";
+    } else {
+        currentPlayer = "O";
+    }
+    if (Math.random() < 0.5) {
+        currentPlayer = "X";
+    } else {
+        currentPlayer = "O";
+    }
 
     window.onload = function () {
         // Get the container where we will add the squares
@@ -136,7 +147,7 @@
         // 1. Create 9 <div> elements with class "box" and unique ids
         for (let i = 0; i < NUM_SQUARES; i++) {
             let id = "card_" + i;
-
+            // <--- ADDED: create the square element
             cards = document.createElement("div");
             cards.className = "box";
             cards.id = id;
@@ -148,24 +159,16 @@
                     return; // ignore clicks on already filled squares
                 }
 
-                else {
-                    // <--- ADDED: randomly decide whether to place X or O (for testing purposes)
-                    let randomPlayer;
-                    if (Math.random() < 0.5) {
-                        randomPlayer = "X";
-                    } else {
-                        randomPlayer = "O";
-                    }                   
-                     // put the current player's symbol in the square
-                    this.textContent = currentPlayer;
+                // put the current player's symbol in the square
+                this.textContent = currentPlayer;
 
-                    // Update the message to show whose turn is NEXT
-                    // (first we switch players, then show it)
-                    currentPlayer = (currentPlayer === "X") ? "O" : "X"; // <--- ADDED: switch turn
-                    message.innerText = currentPlayer + " Turn";        // <--- ADDED: show whose turn
-                }
-            });
-
+                // Update the message to show whose turn is NEXT
+                // (first we switch players, then show it)
+                currentPlayer = (currentPlayer === "X") ? "O" : "X"; // <--- ADDED: switch turn
+                message.innerText = currentPlayer + " Turn";        // <--- ADDED: show whose turn
+            }
+            );
+            // <--- ADDED: add the square to the container
             container.appendChild(cards);
         }
         // 3. Add event listener to the X's Turn button
@@ -180,12 +183,9 @@
         if (cardClick) {
             cardClick.addEventListener("click", function () {
                 writeX();
-                alert("X's Turn Start");
             });
-        }
-    };
+        };
 </script>
-    </script>
 </body>
 
 </html>
