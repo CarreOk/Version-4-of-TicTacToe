@@ -122,52 +122,69 @@
     </div>
 
     <script>
-        NUM_SQUARES = 9;
+        <script>
+    NUM_SQUARES = 9;
+    let currentPlayer = "X"; // <--- ADDED: start with X
 
-        window.onload = function () {
-            // Get the container where we will add the squares
-            const container = document.querySelector('.container');
-            // Get the message element to update it later
-            const message = document.getElementById("x-turn");
+    window.onload = function () {
+        // Get the container where we will add the squares
+        const container = document.querySelector('.container');
+        // Get the message element to update it later
+        const message = document.getElementById("x-turn");
+        message.innerText = currentPlayer + " Turn to start"; // <--- ADDED: show starting turn
 
-            // 1. Create 9 <div> elements with class "box" and unique ids
-            for (let i = 0; i < NUM_SQUARES; i++) {
-                let id = "card_" + i;
+        // 1. Create 9 <div> elements with class "box" and unique ids
+        for (let i = 0; i < NUM_SQUARES; i++) {
+            let id = "card_" + i;
 
-                cards = document.createElement("div");
-                cards.className = "box";
-                cards.id = id;
+            cards = document.createElement("div");
+            cards.className = "box";
+            cards.id = id;
 
-                // 2. Add click event listener to each square
-                cards.addEventListener("click", function () {
-                    // Toggle between "X" and "O" on click
-                    this.textContent = this.textContent === "X" ? "O" : "X";
+            // 2. Add click event listener to each square
+            cards.addEventListener("click", function () {
+                // only place a mark if the square is empty
+                if (this.textContent !== "") {
+                    return; // ignore clicks on already filled squares
+                }
 
-                    // Alert the square number that was clicked
-                    alert("You clicked square number: " + i);
+                else {
+                    // <--- ADDED: randomly decide whether to place X or O (for testing purposes)
+                    let randomPlayer;
+                    if (Math.random() < 0.5) {
+                        randomPlayer = "X";
+                    } else {
+                        randomPlayer = "O";
+                    }                   
+                     // put the current player's symbol in the square
+                    this.textContent = currentPlayer;
 
-                    // Update the message to show which square was clicked and what was placed
-                    message.innerText = "You clicked square " + i + " and an X was placed.";
-                });
+                    // Update the message to show whose turn is NEXT
+                    // (first we switch players, then show it)
+                    currentPlayer = (currentPlayer === "X") ? "O" : "X"; // <--- ADDED: switch turn
+                    message.innerText = currentPlayer + " Turn";        // <--- ADDED: show whose turn
+                }
+            });
 
-                container.appendChild(cards);
-            }
-            // 3. Add event listener to the X's Turn button
-            const cardClick = document.getElementById("button_1");
+            container.appendChild(cards);
+        }
+        // 3. Add event listener to the X's Turn button
+        const cardClick = document.getElementById("button_1");
 
-            function writeX() {
-                // This function will be called when the X's Turn button is clicked
-                message.innerText = "You will Find O on the 6th Card/Square!";
-            }
+        function writeX() {
+            // This function will be called when the X's Turn button is clicked
+            message.innerText = "You will Find O on the 6th Card/Square!";
+        }
 
-            // Check if the button exists before adding the event listener
-            if (cardClick) {
-                cardClick.addEventListener("click", function () {
-                    writeX();
-                    alert("X's Turn Start");
-                });
-            }
-        };
+        // Check if the button exists before adding the event listener
+        if (cardClick) {
+            cardClick.addEventListener("click", function () {
+                writeX();
+                alert("X's Turn Start");
+            });
+        }
+    };
+</script>
     </script>
 </body>
 
