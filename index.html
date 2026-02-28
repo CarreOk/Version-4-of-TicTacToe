@@ -108,12 +108,13 @@
     </div>
 
     <div class="container_001">
-        <div id="button_1" class="button_1" value="XsTurn" onclick="dosomething_1()">
+        <!--<div id="button_1" class="button_1" value="XsTurn" onclick="dosomething_1()">
             <button onclick="alert('Should We Get Started?')"> X's Turn Start</button>
         </div>
         <div id="button_2" class="button_2" value="OsTurn" onclick="dosomething_2()">
             <button onclick="alert('Please Take Your Turn.')">O's turn</button>
-        </div>
+        </div>-->
+        
         <div class="button">
             <form action="https://en.wikipedia.org/wiki/Tic-tac-toe" method="get" target="_blank">
                 <button type="submit">Link Info Page</button>
@@ -167,19 +168,19 @@
             container.appendChild(cards);
         }
         // 3. Add event listener to the X's Turn button
-        const cardClick = document.getElementById("button_1");
+       // const cardClick = document.getElementById("button_1");
 
-        function writeX() {
+       // function writeX() {
             // This function will be called when the X's Turn button is clicked
-            message.innerText = "You will Find O on the 6th Card/Square!";
-        }
+            //message.innerText = "You will Find O on the 6th Card/Square!";
+        //}
 
         // Check if the button exists before adding the event listener
-        if (cardClick) {
-            cardClick.addEventListener("click", function () {
-                writeX();
-            });
-        };
+       //if (cardClick) {
+            //cardClick.addEventListener("click", function () {
+               // writeX();
+           // });
+        //};
     }
 </script>
 </body>
